@@ -49,18 +49,35 @@
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(158);
 
+	//Syntax in ES6
+
 	var _require = __webpack_require__(159),
 	    Route = _require.Route,
 	    Router = _require.Router,
 	    IndexRoute = _require.IndexRoute,
 	    hashHistory = _require.hashHistory;
+	/*
+	  The above line creates a variable named Route, Router
+	  and gets its value using require
+	*/
+	/*
+	Code in ES5
+
+	var Route = require('react-router').Route;
+	Similar thing we would have to do for other variables as well
+	*/
 
 	var Main = __webpack_require__(216);
+	/*var Weather = require('Weather');*/
 
 	ReactDOM.render(React.createElement(
 	  Router,
 	  { history: hashHistory },
-	  React.createElement(Route, { path: '/', component: Main })
+	  React.createElement(
+	    Route,
+	    { path: '/', component: Main },
+	    '//This is our first route. Using path we make sure what we want to show as a route of our application'
+	  )
 	), document.getElementById('app'));
 
 /***/ }),
