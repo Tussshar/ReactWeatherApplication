@@ -27,6 +27,7 @@ ReactDOM.render(
       <Route path="examples" component={Examples}/>
       <IndexRoute component={Weather}/>
       //IndexRoute only take one argument
+      //For Route we use Link and for IndexRoute we use IndexLink
     </Route>
   </Router>,
   document.getElementById('app')
