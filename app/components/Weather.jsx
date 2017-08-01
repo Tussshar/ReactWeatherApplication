@@ -15,7 +15,7 @@ var Weather = React.createClass({
     */
     var that = this;
 
-    
+
     this.setState({isLoading: true});
 
     openWeatherMap.getTemp(location).then(function(temp){
@@ -41,7 +41,7 @@ var Weather = React.createClass({
 
     function renderMessage(){
       if(isLoading){
-        return <h4>Fetching weather...</h4>;
+        return <h2 className="text-center">Fetching weather...</h4>;
       }else if(temp && location){
         return <WeatherMessage temp={temp} location={location}/>;
       }
@@ -49,7 +49,7 @@ var Weather = React.createClass({
 
     return (
       <div>
-        <h3>Weather component</h3>
+        <h1 className="text-center">Get Weather</h1>
         <WeatherForm onSearch={this.handleSearch}/>
         {renderMessage()}
       </div>
