@@ -23,17 +23,20 @@ var Weather = React.createClass({
     });
 
     openWeatherMap.getTemp(location).then(function(temp){
+      console.log("success");
       that.setState({
         location: location,
         temp: temp,
         isLoading: false
       });
     }, function(e){
+      console.log("Failure");
+      console.log(e.message);
       that.setState({
         isLoading: false,
         errorMessage: e.message
       });
-      
+
     });
     /*this.setState({
       location: location,
@@ -54,7 +57,7 @@ var Weather = React.createClass({
     function renderError(){
       if (typeof errorMessage === 'string'){
         return (
-          <ErrorModal/>
+          <ErrorModal message={errorMessage}/>
         )
       }
     }
