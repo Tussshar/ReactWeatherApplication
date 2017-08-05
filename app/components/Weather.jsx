@@ -22,10 +22,7 @@ var Weather = React.createClass({
       errorMessage: undefined
     });
 
-    console.log(location);
-
     openWeatherMap.getTemp(location).then(function(temp){
-      console.log("success");
       that.setState({
         location: location,
         temp: temp,
@@ -36,8 +33,7 @@ var Weather = React.createClass({
         isLoading: false,
         errorMessage: e.message
       });
-      console.log("Failure")
-      alert(errorMessage);
+      
     });
     /*this.setState({
       location: location,
