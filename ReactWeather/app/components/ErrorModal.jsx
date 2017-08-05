@@ -9,6 +9,7 @@ var ErrorModal = React.createClass({
 
     componentDidMount: gets rendered after the elements have been rendered in the DOM
   */
+  /*Adding random comment*/
   getDefaultProps: function(){
     return {
       title: 'Error'
