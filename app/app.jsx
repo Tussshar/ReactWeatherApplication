@@ -19,11 +19,13 @@ var Weather = require('Weather');
 var About = require('About');
 var Examples = require('Examples');
 
+//Load Foundation
+require('style!css!foundation-sites/dist/foundation.min.css')
+
 //App css
 require('style!css!sass!applicationStyles')
 
-//Load Foundation
-require('style!css!foundation-sites/dist/foundation.min.css')
+
 $(document).foundation();
 
 ReactDOM.render(
