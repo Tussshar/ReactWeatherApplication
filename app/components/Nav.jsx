@@ -4,7 +4,22 @@ var {Link, IndexLink} = require('react-router');
 var Nav = React.createClass({
   onSearch: function(e){
     e.preventDefault();
-    alert('Not yet wired up');
+
+    var location = this.refs.search.value;
+
+    /*
+      Any time you are updating a URL with a string you gonna have to encode it
+      This is going to take invalid char like space and convert it so that
+      browser can understand it
+    */
+
+    var encodedLocation = encodeURIComponent(location);
+
+    if(location.length > 0){
+      this.refs.search.value = '';
+      window.location.hash = '#/?location=' + encodedLocation;
+    }
+
   },
   render: function(){
     return (
@@ -27,7 +42,7 @@ var Nav = React.createClass({
           <form onSubmit={this.onSearch}>
             <ul className="menu">
               <li>
-                <input type="search" placeholder="Search Weather by City"/>
+                <input type="search" ref="search" placeholder="Search Weather by City"/>
               </li>
               <li>
                 <input type="submit" className="button" value="Get Weather"/>

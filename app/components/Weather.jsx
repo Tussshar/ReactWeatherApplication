@@ -19,7 +19,9 @@ var Weather = React.createClass({
 
     this.setState({
       isLoading: true,
-      errorMessage: undefined
+      errorMessage: undefined,
+      location: undefined,
+      temp: undefined
     });
 
     openWeatherMap.getTemp(location).then(function(temp){
@@ -42,6 +44,38 @@ var Weather = React.createClass({
       location: location,
       temp: 23
     });*/
+  },
+  componentDidMount: function(){//Sec7, Lect 61
+    /*
+      When we use Router we get access to ton of props,
+      some of them being a query string of url
+    */
+    var location = this.props.location.query.location;
+
+    if(location && location.length > 0){
+      this.handleSearch(location);
+      //would remove query string from url once it is successfully searched
+      window.location.hash = '#/';
+
+    }
+  },
+  componentWillReceiveProps: function(newProps){
+    /*
+      This function is gonna get called any time the components props
+      will get updated.
+      If we dont write this function then
+      if we search using the search box at the top from home page then
+      nothing would happen because component is already rendered
+      and it doesnot know how to update itself
+    */
+    var location = newProps.location.query.location;
+
+    if(location && location.length > 0){
+      this.handleSearch(location);
+      //would remove query string from url once it is successfully searched
+      window.location.hash = '#/';
+
+    }
   },
   render: function(){
     var {isLoading, temp, location, errorMessage} = this.state;
