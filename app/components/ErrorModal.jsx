@@ -1,4 +1,6 @@
 var React = require('react');
+var ReactDOM = require('react-dom');
+var ReactDOMServer = require('react-dom/server');
 
 var ErrorModal = React.createClass({
   /*
@@ -25,21 +27,45 @@ var ErrorModal = React.createClass({
     message: React.PropTypes.string.isRequired
   },
   componentDidMount: function(){
+
+    var {title, message} = this.props;
+
+    var modalMarkUp = (
+      <div id="error-modal" className="reveal tiny text-center" data-reveal="">
+        <h4>{title}</h4>
+        <p>{message}</p>
+        <p>/*data-close automatically closes the modal when button is clicked*/
+          <button className="button hollow" data-close="">Okay</button>
+        </p>
+      </div>
+    );
+
+    var $modal = $(ReactDOMServer.renderToString(modalMarkUp));
+    $(ReactDOM.findDOMNode(this)).html($modal);
+
+    /*
+      We could have written the code by keeping just below two line in
+      componentDidMount and writing the div that's stored in modalMarkUp in
+      return statement of render function. And no need of $modal
+
+      But foundation by calling modal.open makes some chnages to the DOM
+      and React doesnot work well with third party library updating the DOM
+      like that.
+
+      Now its not too hard to fix all we need to do is remove the returning div
+      outside the render method and into the componentDidMount
+    */
     var modal = new Foundation.Reveal($('#error-modal'));
     modal.open();
   },
   render: function(){
-    var {title, message} = this.props;
 
-      return (
-        <div id="error-modal" className="reveal tiny text-center" data-reveal="">
-          <h4>{title}</h4>
-          <p>{message}</p>
-          <p>/*data-close automatically closes the modal when button is clicked*/
-            <button className="button hollow" data-close="">Okay</button>
-          </p>
-        </div>
-      );
+
+    return (
+      <div>
+
+      </div>
+    );
   }
 });
 
